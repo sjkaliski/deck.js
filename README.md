@@ -20,8 +20,8 @@ Table
 
 Routes
 ----------
-/table/:id -> View of the Table
-/table/create & / -> create a New Table & Invite users
-/table/:id/:username/:secret
+- /table/:id -> View of the Table
+- /table/create & / -> create a New Table & Invite users
+- /table/:id/:username/:secret
 
 
