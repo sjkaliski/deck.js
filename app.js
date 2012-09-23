@@ -48,9 +48,36 @@ var Table = mongoose.model('Table', new mongoose.Schema({
 
 
 
-app.get('/', routes.index);
-app.get('/table/:id', routes.table);
-app.get('/table/:id/:user', routes.user);
+app.get('/', function(req, res) {
+  //This is a form to create a new table
+
+
+  res.render('index', { title: 'Deck.js' });
+});
+
+app.post('/table/create', function(req, res){
+  //create the first user
+  res.redirect("/");
+});
+app.get('/table/:id', function(req, res) {
+
+});
+app.get('/table/:id/:user', function(req, res) {
+  res.send("todo");
+});
+
+app.get('/table/:id/user/create', function(req, res){
+  //This is the url that the table creator sends to his friends
+  //They will then sign up with username, etc
+  res.send("todo");
+});
+
+app.post('/table/:id/user/create', function(req, res){
+  //this is how new users are created
+  res.redirect('/');
+});
+
+
 
 require('./lib/socket.io')(io);
 
