@@ -17,17 +17,17 @@ define(['models/model'], function(Model) {
   var Card = Model.extend({
 
     defaults: {
-      'suite': 'Heart',
+      'suit': 'Heart',
       'value': '5'
     },
 
     suit: function() {
-      var suit = this.get('suite');
+      var suit = this.get('suit');
       return suitMap[suit];
     },
 
     code: function() {
-      var suit = this.get('suite');
+      var suit = this.get('suit');
       return codeMap[suit];
     }
 
