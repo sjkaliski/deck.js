@@ -32,18 +32,18 @@ app.configure('development', function(){
 var cardValues = ["A", "K", "Q", "J", "10", "9", "8", "7", "6", "5", "4", "3", "2"];
 var cardSuites = ["Heart", "Spade", "Club", "Diamond"];
 
-var Card = mongoose.model('Card', new mongoose.Schema({
+var Card = new mongoose.Schema({
   value: {type: String, trim: true, required: true, enum: cardValues},
   suite: {type: String, trim: true, required: true, enum: cardSuites}
-}));
+});
 
-var User = mongoose.model('User', new mongoose.Schema({
-  name: String,
+var User = new mongoose.Schema({
+  name: { type: String, required: true },
   cards: [Card]
-}));
+});
 
 var Table = mongoose.model('Table', new mongoose.Schema({
-  name: String,
+  name: { type: String, required: true },
   users: [User],
   cards: [Card]
 }));
@@ -56,11 +56,15 @@ app.get('/', function(req, res) {
 
 app.post('/table/create', function(req, res){
   //creates a new table and redirect you to that table
-  var table = new Table();
-  table.name = req.body.tablename;
+  var table = new Table({ users:[], name: req.body.name });
   table.save(function(err, doc){
-    if(err) throw err;
-    res.redirect('/table/'+doc._id);
+    var result = {};
+    if(err) {
+      result = { success: false, err: err };
+    } else {
+      result = { success: true, id: doc._id };
+    }
+    res.json(result);
   });
 });
 
@@ -70,26 +74,25 @@ app.get('/table/:id', function(req, res) {
   });
 });
 
-app.get('/table/:id/user/create', function(req, res){
-  //This is the url that the table creator sends to his friends
-  //They will then sign up with username, etc
-  
+app.post('/table/:id/user/create', function(req, res){
+
   Table.findById(req.params.id, function(err, table){
-    var user = new User();
-    user.name = req.body.username;
-    user.save(function(err, doc){
-      table.users.push(doc);
-      res.send('sucess');
-    });
-    
+    var result = {};
+    if(err){
+      result = {
+        success: false,
+        err: err
+      };
+    } else {
+      table.users.push({name: req.body.name});
+      result = {
+        success: true,
+        err: err
+      };
+    }
+    res.json(result);
   });
 });
-
-app.post('/table/:id/user/create', function(req, res){
-  //this is how new users are created
-  res.redirect('/');
-});
-
 
 
 require('./lib/socket.io')(io);
