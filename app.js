@@ -43,7 +43,6 @@ var User = new mongoose.Schema({
 });
 
 var Table = mongoose.model('Table', new mongoose.Schema({
-  name: { type: String, required: true },
   users: [User],
   cards: [Card]
 }));
@@ -56,9 +55,10 @@ app.get('/', function(req, res) {
   res.render('index', { title: 'Deck.js' });
 });
 
-app.post('/table/new', function(req, res){
+//creates a new table
+app.post('/tables', function(req, res){
   //creates a new table and redirect you to that table
-  var table = new Table({ users:[], name: req.body.name });
+  var table = new Table({ users:[] });
   table.save(function(err, doc){
     var result = {};
     if(err) {
@@ -70,13 +70,8 @@ app.post('/table/new', function(req, res){
   });
 });
 
-app.get('/table/:id', function(req, res) {
-  Table.findById(req.params.id, function(err, doc){
-    res.send(doc.name);
-  });
-});
-
-app.post('/table/:id/user/new', function(req, res){
+//create a new user for a table with :id
+app.post('/tables/:id/users', function(req, res){
 
   Table.findById(req.params.id, function(err, table){
     var result = {};
@@ -86,7 +81,7 @@ app.post('/table/:id/user/new', function(req, res){
         err: err
       };
     } else {
-      table.users.push({name: req.body.name});
+      table.users.push({ cards:[] });
       result = {
         success: true,
         err: err

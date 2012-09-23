@@ -8,7 +8,6 @@ Domain Model
 
 Table
 - users[]
-  * name
   * cards[]
 - cards[]
   * value
