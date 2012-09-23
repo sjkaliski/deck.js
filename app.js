@@ -31,10 +31,20 @@ app.configure('development', function(){
 
 var cardValues = ["A", "K", "Q", "J", "10", "9", "8", "7", "6", "5", "4", "3", "2"];
 var cardSuites = ["Heart", "Spade", "Club", "Diamond"];
+var allCards = [];
+for(var i = 0; i < cardValues.length; i++){
+  for(var j = 0; j < cardSuites.length; j++){
+    allCards.push({
+      value: cardValues[i],
+      suite: cardSuites[j]
+    });
+  }
+}
 
 var Card = new mongoose.Schema({
-  value: {type: String, trim: true, required: true, enum: cardValues},
-  suite: {type: String, trim: true, required: true, enum: cardSuites}
+  value: { type: String, trim: true, required: true, enum: cardValues },
+  suite: { type: String, trim: true, required: true, enum: cardSuites },
+  isVisible: { type: Boolean, default: false }
 });
 
 var User = new mongoose.Schema({
@@ -55,23 +65,53 @@ app.get('/', function(req, res) {
   res.render('index', { title: 'Deck.js' });
 });
 
+
+app.get('/api/tables', function(req, res){
+  Table.find({}, function(err, docs){
+    var result = {};
+    if(err){
+      result = {
+        success: false,
+        err: err
+      };
+    } else {
+      results = {
+        succes: true,
+        data: docs
+      };
+    }
+  });
+});
+
 //get table by id
 app.get('/api/tables/:id', function(req, res){
   Table.findById(req.params.id, function(err, doc){
-    res.json(doc);
+    var result = {};
+    if(err){
+      result = {
+        success: false,
+        err: err
+      };
+    } else {
+      result = {
+        success: true,
+        data: doc.toObject()
+      };
+    }
+    res.json(result);
   });
 });
 
 //creates a new table
 app.post('/tables', function(req, res){
   //creates a new table and redirect you to that table
-  var table = new Table({ users:[] });
+  var table = new Table({ users:[], cards: allCards });
   table.save(function(err, doc){
     var result = {};
     if(err) {
       result = { success: false, err: err };
     } else {
-      result = { success: true, id: doc._id };
+      result = { success: true, data: doc };
     }
     res.json(result);
   });
