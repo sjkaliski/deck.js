@@ -18,8 +18,8 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
-  mongoose.connect('mongodb://localhost:27017/deckdev');
-  //mongoose.connect('mongodb://eboard:shipping@alex.mongohq.com:10070/ferrisclothiers');
+  //mongoose.connect('mongodb://localhost:27017/deckdev');
+  mongoose.connect('mongodb://eboard:shipping@alex.mongohq.com:10070/ferrisclothiers');
 });
 
 app.configure('development', function(){
@@ -30,20 +30,20 @@ app.configure('development', function(){
 
 
 var cardValues = ["A", "K", "Q", "J", "10", "9", "8", "7", "6", "5", "4", "3", "2"];
-var cardSuites = ["Heart", "Spade", "Club", "Diamond"];
+var cardSuits = ["Heart", "Spade", "Club", "Diamond"];
 var allCards = [];
 for(var i = 0; i < cardValues.length; i++){
-  for(var j = 0; j < cardSuites.length; j++){
+  for(var j = 0; j < cardSuits.length; j++){
     allCards.push({
       value: cardValues[i],
-      suite: cardSuites[j]
+      suit: cardSuits[j]
     });
   }
 }
 
 var Card = new mongoose.Schema({
   value: { type: String, trim: true, required: true, enum: cardValues },
-  suite: { type: String, trim: true, required: true, enum: cardSuites },
+  suit: { type: String, trim: true, required: true, enum: cardSuits },
   isVisible: { type: Boolean, default: false }
 });
 
@@ -76,7 +76,7 @@ app.get('/api/tables', function(req, res){
       };
     } else {
       results = {
-        succes: true,
+        success: true,
         data: docs
       };
     }
@@ -113,6 +113,25 @@ app.post('/api/tables', function(req, res){
       result = { success: false, err: err };
     } else {
       result = { success: true, data: doc.toObject() };
+    }
+    res.json(result);
+  });
+});
+
+app.put('/api/tables', function(req, res){
+  console.log(req.body);
+  Table.findByIdAndUpdate(req.body._id, {$set: { users: req.body.users, cards: req.body.cards }}, function(err, table){
+    var result = {};
+    if(err){
+      result = {
+        success: false,
+        err: err
+      };
+    } else {
+      result = {
+        success: true,
+        data: table
+      };
     }
     res.json(result);
   });
