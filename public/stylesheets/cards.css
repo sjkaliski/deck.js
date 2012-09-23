@@ -12,16 +12,30 @@
   
   /* Element */
   html, body { height: 100%; width: 100%; }
-  body { background-color: #e7e7e7; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 10px; padding: 20px; }
-  h1 { color: red; font-size: 96px; }
-  a { color: #999; text-decoration: none; }
-  footer { border-top: 1px solid #ccc; clear: both; font-size: 16px; padding: 15px 0; }
-  footer span { color: #ccc; }
+  body {
+    background-color: #e7e7e7;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 10px;
+  }
 
   /* Card */
   #table { height: 100%; position: relative; width: 100%; }
   
-  .card { background-color: #fff; -moz-border-radius: 10px; -webkit-border-radius: 10px; border-radius: 10px; -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); float: left; height: 280px; margin: 0 15px 15px 0; position: relative; width: 200px; z-index: 2; }
+  .card {
+    background-color: #fff;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    float: left;
+    height: 280px;
+    margin: 0 15px 15px 0;
+    position: relative;
+    width: 200px;
+    z-index: 2;
+  }
   .card .back { background-color: red; -webkit-transform: rotateY(180deg); }
   .card.flipped { -webkit-transform: rotateY(180deg); }
   .card.heart, .card.diamond { color: red; }
