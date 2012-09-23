@@ -1,11 +1,14 @@
 define([
-  'quilt'
-], function(Quilt) {
+  'quilt',
+  'jst!templates/user'
+], function(Quilt, jst) {
 
   var UserView = Quilt.View.extend({
 
+    template: jst,
+
     render: function() {
-      console.log(this.model);
+      Quilt.View.prototype.render.apply(this, arguments);
       return this;
     }
 

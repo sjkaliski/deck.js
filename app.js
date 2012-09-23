@@ -132,7 +132,7 @@ app.post('/api/tables/:id/users', function(req, res){
       table.users.push({ cards:[] });
       result = {
         success: true,
-        id: table.users[table.users.length-1]._id
+        _id: table.users[table.users.length-1]._id
       };
     }
     res.json(result);

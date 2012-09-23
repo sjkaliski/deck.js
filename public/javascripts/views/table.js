@@ -10,8 +10,6 @@ define([
     render: function() {
       Quilt.View.prototype.render.apply(this, arguments);
 
-      console.log(this.model.cards(), this.model.users())
-
       return this;
     }
 

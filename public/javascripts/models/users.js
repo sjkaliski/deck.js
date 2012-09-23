@@ -10,7 +10,8 @@ define([
     },
 
     url: function() {
-      return '/tables/' + this.owner.id + '/users'
+      console.log('owner: ', this.owner)
+      return '/api/tables/' + this.owner.id + '/users'
     }
 
   });

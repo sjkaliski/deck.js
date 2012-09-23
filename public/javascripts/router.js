@@ -25,13 +25,13 @@ define([
       var table = Table.create();
       table.save({}, {
         success: function(resp) {
-          _this.navigate('/tables/' + table.get('id'), true);
+          _this.navigate('/tables/' + table.get('_id'), true);
         }
       });
     },
 
     table: function(table_id) {
-      var table = Table.create({ id: table_id });
+      var table = Table.create({ _id: table_id });
       this.changePage(new TableView({
         model: table
       }));
@@ -39,18 +39,19 @@ define([
 
     join: function(table_id) {
       var _this = this;
-      var table = Table.create({ id: table_id });
-      var user = User.create();
+      var table = Table.create({ _id: table_id });
+      var user = User.create({ table_id: table_id });
       user.save({}, {
         success: function(resp) {
-          _this.navigate('/tables/' + table.get('id') + '/view', true);
+          console.log(table, user);
+          _this.navigate('/tables/' + table.get('_id') + '/users/' + user.get('_id'), true);
         }
       })
     },
 
     view: function(table_id, user_id) {
-      var table = Table.create({ id: table_id });
-      var user = User.create({ id: user_id });
+      var table = Table.create({ _id: table_id });
+      var user = User.create({ _id: user_id });
       this.changePage(new UserView({
         model: user
       }));

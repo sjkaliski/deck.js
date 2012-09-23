@@ -9,7 +9,7 @@ define([
       return Table.create(attrs, options);
     },
 
-    url: '/tables'
+    url: '/api/tables'
 
   });
 
