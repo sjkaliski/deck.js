@@ -47,7 +47,9 @@ var Table = mongoose.model('Table', new mongoose.Schema({
   cards: [Card]
 }));
 
-
+app.get('/test', function(req, res){
+  res.render('mocha');
+});
 
 app.get('/', function(req, res) {
   res.render('index', { title: 'Deck.js' });
