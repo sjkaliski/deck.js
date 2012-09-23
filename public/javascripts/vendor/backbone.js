@@ -1403,6 +1403,7 @@
 
     var success = options.success;
     options.success = function(resp, status, xhr) {
+      resp = resp.data;
       if (success) success(resp, status, xhr);
       model.trigger('sync', model, resp, options);
     };

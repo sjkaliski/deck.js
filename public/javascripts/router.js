@@ -48,7 +48,6 @@ define([
       var user = User.create({ table_id: table_id });
       user.save({}, {
         success: function(resp) {
-          console.log(table, user);
           _this.navigate('/tables/' + table.get('_id') + '/users/' + user.get('_id'), true);
         }
       })

@@ -15,7 +15,7 @@ define([
       this.views.push(new List({
         el: this.$el,
         view: CardView,
-        collection: this.model.cards
+        collection: this.model.cards()
       }).render());
 
       return this;

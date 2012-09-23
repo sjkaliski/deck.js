@@ -1,7 +1,8 @@
 define([
   'backbone',
   'quilt',
-  'router'
+  'router',
+  'models/associations'
 ], function(Backbone, Quilt, Router) {
 
   var App = Quilt.View.extend({
