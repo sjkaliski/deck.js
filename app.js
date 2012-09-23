@@ -123,7 +123,6 @@ app.put('/api/tables', function(req, res){
   Table.findByIdAndUpdate(req.body._id, {$set: { users: req.body.users, cards: req.body.cards }}, function(err, table){
     var result = {};
     if(err){
-      throw err;
       result = {
         success: false,
         err: err
