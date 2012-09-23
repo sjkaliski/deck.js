@@ -76,7 +76,7 @@ app.get('/api/tables', function(req, res){
       };
     } else {
       results = {
-        succes: true,
+        success: true,
         data: docs
       };
     }
@@ -113,6 +113,26 @@ app.post('/api/tables', function(req, res){
       result = { success: false, err: err };
     } else {
       result = { success: true, data: doc.toObject() };
+    }
+    res.json(result);
+  });
+});
+
+app.put('/api/tables', function(req, res){
+  console.log(req.body);
+  Table.findByIdAndUpdate(req.body._id, {$set: { users: req.body.users, cards: req.body.cards }}, function(err, table){
+    var result = {};
+    if(err){
+      throw err;
+      result = {
+        success: false,
+        err: err
+      };
+    } else {
+      result = {
+        success: true,
+        data: table
+      };
     }
     res.json(result);
   });
