@@ -7,7 +7,7 @@ Domain Model
 ---------
 
 Table
-  has many Users
-    has Many Cards
-  has one Deck
-    has Many Cards
+- has many Users
+  * has Many Cards
+- has one Deck
+  * has Many Cards
