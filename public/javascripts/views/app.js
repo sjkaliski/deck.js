@@ -9,8 +9,6 @@ define([
 
     initialize: function() {
       Quilt.View.prototype.initialize.apply(this, arguments);
-      // Backbone.history || (Backbone.history = new Backbone.History());
-      // Backbone.history.options = { root: '/' };
       this.router = new Router({ app: this });
     },
 

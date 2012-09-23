@@ -9,6 +9,7 @@ define([
   var Router = Backbone.Router.extend({
 
     constructor: function(options) {
+      Backbone.Router.prototype.constructor.apply(this, options);
       this.app = options.app;
     },
 
@@ -20,10 +21,9 @@ define([
     },
 
     create: function() {
-      console.log('here');
       var _this = this;
       var table = Table.create();
-      table.save({
+      table.save({}, {
         success: function(resp) {
           _this.navigate('/tables/' + table.get('id'), true);
         }
@@ -41,7 +41,7 @@ define([
       var _this = this;
       var table = Table.create({ id: table_id });
       var user = User.create();
-      user.save({
+      user.save({}, {
         success: function(resp) {
           _this.navigate('/tables/' + table.get('id') + '/view', true);
         }
@@ -59,7 +59,7 @@ define([
     changePage: function(view) {
       var tab = this.tab;
       if (tab) tab.remove().destroy()
-      this.app.$content.html((this.tab = view.render()).el)
+      this.app.$el.html((this.tab = view.render()).el)
     }
 
   });
