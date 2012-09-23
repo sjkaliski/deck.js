@@ -10,8 +10,6 @@ Table
 - users[]
   * name
   * cards[]
-  - value
-  - suite
 - cards[]
   * value
   * suite
