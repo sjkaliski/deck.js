@@ -80,6 +80,7 @@ app.get('/api/tables', function(req, res){
         data: docs
       };
     }
+    res.json(results);
   });
 });
 
@@ -111,7 +112,7 @@ app.post('/tables', function(req, res){
     if(err) {
       result = { success: false, err: err };
     } else {
-      result = { success: true, data: doc };
+      result = { success: true, data: doc.toObject() };
     }
     res.json(result);
   });
