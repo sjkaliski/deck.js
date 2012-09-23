@@ -56,7 +56,7 @@ app.get('/', function(req, res) {
 });
 
 //get table by id
-app.get('/tables/:id', function(req, res){
+app.get('/api/tables/:id', function(req, res){
   Table.findById(req.params.id, function(err, doc){
     res.json(doc);
   });
