@@ -1,34 +1,31 @@
 define([
+  'backbone',
   'quilt',
-  'list',
-  'models/cards',
-  'views/card'
-], function(Quilt, List, Cards, CardView) {
+  'router',
+  'models/associations'
+], function(Backbone, Quilt, Router) {
 
   var App = Quilt.View.extend({
 
+    initialize: function() {
+      Quilt.View.prototype.initialize.apply(this, arguments);
+      // Backbone.history || (Backbone.history = new Backbone.History());
+      // Backbone.history.options = { root: '/' };
+      this.router = new Router({ app: this });
+    },
+
+    events: {
+      'route a': 'route'
+    },
+
+    route: function(e, fragment) {
+      this.router.navigate(fragment, true);
+    },
+
     render: function() {
-      var cardView;
-
-      cards = new Cards([{
-        value: '7',
-        suit: 'Heart'
-      }, {
-        value: 'A',
-        suit: 'Spade'
-      }, {
-        value: 'J',
-        suit: 'Club'
-      }, {
-        value: '10',
-        suit: 'Diamond'
-      }]);
-
-      this.views.push(new List({
-        el: this.$el,
-        view: CardView,
-        collection: cards
-      }).render());
+      Quilt.View.prototype.render.apply(this, arguments);
+      Backbone.history.start({ pushState: true });
+      return this;
     }
 
   });

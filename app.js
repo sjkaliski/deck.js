@@ -89,6 +89,19 @@ app.post('/tables/:id/users', function(req, res){
   });
 });
 
+app.get('/tables/create', function(req, res) {
+  res.render('index');
+});
+app.get('/tables/:id', function(req, res) {
+  res.render('index');
+});
+app.get('/tables/:id/join', function(req, res) {
+  res.render('index');
+});
+app.get('/tables/:id/users/:id', function(req, res) {
+  res.render('index');
+});
+
 
 require('./lib/socket.io')(io);
 
