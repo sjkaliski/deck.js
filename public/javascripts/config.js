@@ -8,6 +8,7 @@ require.config({
   ],
   paths: {
     jquery: 'vendor/jquery',
+    jqueryui: 'vendor/jquery-ui.min',
     underscore: 'vendor/underscore',
     backbone: 'vendor/backbone',
     quilt: 'vendor/quilt',
@@ -27,6 +28,10 @@ require.config({
     },
     jquery: {
       exports: 'jQuery'
+    },
+    jqueryui: {
+      deps: ['jquery'],
+      exports: '$'
     },
     supermodel: {
       deps: ['backbone'],

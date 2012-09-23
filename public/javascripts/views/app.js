@@ -2,7 +2,9 @@ define([
   'backbone',
   'quilt',
   'router',
-  'models/associations'
+  'models/associations',
+  'jqueryui',
+  'ui/all'
 ], function(Backbone, Quilt, Router) {
 
   var App = Quilt.View.extend({

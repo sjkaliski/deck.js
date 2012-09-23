@@ -51,15 +51,18 @@ body {
   -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  float: left;
   height: 280px;
-  margin: 0 15px 15px 0;
-  position: relative;
+  position: absolute;
   width: 200px;
   z-index: 2;
 }
 .card .back {
-  background-color: red;
+  background-color: steelblue;
+  width: 100%;
+  height: 100%;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
   -webkit-transform: rotateY(180deg);
 }
 .card.flipped {

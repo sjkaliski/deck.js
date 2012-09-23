@@ -35,9 +35,19 @@ define([
 
     render: function() {
       Quilt.View.prototype.render.apply(this, arguments);
+
       value = this.model.get('value');
       cardJst = map[value];
       this.$el.html(cardJst({ model: this.model }));
+
+      if (this.model.get('isVisible')) {
+        this.$('[data-card-back]').addClass('hidden');
+      } else {
+        this.$('[data-card-front]').addClass('hidden');
+      }
+
+      this.$el.draggable();
+
       return this;
     }
 
