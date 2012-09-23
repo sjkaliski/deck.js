@@ -3,25 +3,12 @@ USER FACING ENDPOINTS
 
 FOR TABLES
 
-/tables/new
-
-redirect to
-
-/tables/<table_id>
-
-which displays table view
-
+POST /tables
 
 
 FOR USERS
 
-/tables/<table_id>/join
-
-create user and redirect =>
-
-/tables/<table_id>/users/<user_id>
-
-which displays user view
+POST /tables/<table_id>/users
 
 
 
