@@ -50,8 +50,6 @@ var Table = mongoose.model('Table', new mongoose.Schema({
 
 
 app.get('/', function(req, res) {
-
-
   res.render('index', { title: 'Deck.js' });
 });
 
@@ -84,7 +82,7 @@ app.post('/tables/:id/users', function(req, res){
       table.users.push({ cards:[] });
       result = {
         success: true,
-        err: err
+        id: table.users[table.users.length-1]._id
       };
     }
     res.json(result);
