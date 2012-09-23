@@ -26,4 +26,9 @@ describe('My Sickass Endpoints', function(){
       }
     }); 
   });
+  describe('Original Deck of Cards', function(){
+    it('should have 52 cards')
+    it('should set isVisible to false')
+  });
+
 });
