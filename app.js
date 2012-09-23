@@ -104,7 +104,7 @@ app.get('/api/tables/:id', function(req, res){
 });
 
 //creates a new table
-app.post('/tables', function(req, res){
+app.post('/api/tables', function(req, res){
   //creates a new table and redirect you to that table
   var table = new Table({ users:[], cards: allCards });
   table.save(function(err, doc){
@@ -119,7 +119,7 @@ app.post('/tables', function(req, res){
 });
 
 //create a new user for a table with :id
-app.post('/tables/:id/users', function(req, res){
+app.post('/api/tables/:id/users', function(req, res){
 
   Table.findById(req.params.id, function(err, table){
     var result = {};
@@ -138,20 +138,6 @@ app.post('/tables/:id/users', function(req, res){
     res.json(result);
   });
 });
-
-app.get('/tables/create', function(req, res) {
-  res.render('index');
-});
-app.get('/tables/:id', function(req, res) {
-  res.render('index');
-});
-app.get('/tables/:id/join', function(req, res) {
-  res.render('index');
-});
-app.get('/tables/:id/users/:id', function(req, res) {
-  res.render('index');
-});
-
 
 require('./lib/socket.io')(io);
 
