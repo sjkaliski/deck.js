@@ -1,0 +1,48 @@
+USER FACING ENDPOINTS
+=====================
+
+FOR TABLES
+
+/tables/new
+
+redirect to
+
+/tables/<table_id>
+
+which displays table view
+
+
+
+FOR USERS
+
+/tables/<table_id>/join
+
+create user and redirect =>
+
+/tables/<table_id>/users/<user_id>
+
+which displays user view
+
+
+
+JSON API ENDPOINTS
+==================
+
+GET
+/tables/<table_id>
+
+{
+  users: []
+  cards: []
+}
+
+PUT
+/tables/<table_id>
+
+{
+  users: []
+  cards: []
+}
+
+PUT
+/tables/<table_id>/reset
