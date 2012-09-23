@@ -31,10 +31,15 @@ define([
     },
 
     table: function(table_id) {
+      var _this = this;
       var table = Table.create({ _id: table_id });
-      this.changePage(new TableView({
-        model: table
-      }));
+      table.fetch({
+        success: function() {
+          _this.changePage(new TableView({
+            model: table
+          }));
+        }
+      });
     },
 
     join: function(table_id) {

@@ -10,7 +10,6 @@ define([
     },
 
     url: function() {
-      console.log('owner: ', this.owner)
       return '/api/tables/' + this.owner.id + '/users'
     }
 
