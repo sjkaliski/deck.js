@@ -1,0 +1,13 @@
+<div class="card queen <%= o.model.suit() %>">
+  <div class="corner top">
+    <span class="number"><%= o.model.get('value') %></span>
+    <span><%= o.model.code() %></span>
+  </div>
+  
+  <span class="suit middle_center"><%= o.model.code() %></span>
+  
+  <div class="corner bottom">
+    <span class="number"><%= o.model.get('value') %></span>
+    <span><%= o.model.code() %></span>
+  </div>
+</div>

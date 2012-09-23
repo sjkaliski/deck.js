@@ -1,0 +1,23 @@
+<div class="card ten <%= o.model.suit() %>">
+  <div class="corner top">
+    <span class="number"><%= o.model.get('value') %></span>
+    <span><%= o.model.code() %></span>
+  </div>
+  
+  <span class="suit top_left"><%= o.model.code() %></span>
+  <span class="suit top_right"><%= o.model.code() %></span>
+  
+  <span class="suit middle_top_left"><%= o.model.code() %></span>
+  <span class="suit middle_top_center"><%= o.model.code() %></span>
+  <span class="suit middle_top_right"><%= o.model.code() %></span>
+  <span class="suit bottom_left"><%= o.model.code() %></span>
+  <span class="suit bottom_right"><%= o.model.code() %></span>
+  <span class="suit middle_bottom_center"><%= o.model.code() %></span>
+  <span class="suit middle_bottom_left"><%= o.model.code() %></span>
+  <span class="suit middle_bottom_right"><%= o.model.code() %></span>
+  
+  <div class="corner bottom">
+    <span class="number"><%= o.model.get('value') %></span>
+    <span><%= o.model.code() %></span>
+  </div>
+</div>

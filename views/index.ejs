@@ -2,39 +2,19 @@
 <html>
   <head>
     <title><%= title %></title>
-	<link rel='stylesheet' href='/stylesheets/style.css' />
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>	
-	<script>
-		// Test data
-		suits = {
-			diamond : "&#9830;",
-			spade : "&#9824;",
-			heart : "&#9829;",
-			club  : "&#9827;"
-		};
-
-		cards = {
-			"2" : function(suit) {
-				return '<div class="card ' + suit + ' two"><div class="corner top"><span class="number">2</span><span>' + suits[suit] + '</span></div><span class="suit top_center">' + suits[suit] + '</span><span class="suit bottom_center">' + suits[suit] + '</span><div class="corner bottom"><span class="number">2</span><span>' + suits[suit] + '</span></div></div>';
-			}
-		}
-
-	</script>
+    <link rel='stylesheet' href='/stylesheets/cards.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  
+    <script type='text/javascript' src='javascripts/vendor/require.js'></script>
+    <script type='text/javascript' src='javascripts/config.js'></script>
+    <script type='text/javascript'>
+    requirejs.config({
+      baseUrl: 'javascripts'
+    });
+    require(['main']);
+    </script>
   </head>
   <body>
-<!-- REMEMBER post tablename to /table/create-->
-	<div id="container">
-		<h2>Public table</h2>
-		<div id="table">
-				
-		</div>
-	</div>
-
-	<script>
-		$("#table").append(cards["2"]("club"));
-		$("#table").append(cards["2"]("club"));
-		$("#table").append(cards["2"]("club"));
-	</script>
 
   </body>
 </html>
