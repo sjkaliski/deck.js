@@ -7,17 +7,18 @@ Domain Model
 -------------
 
 Table
-- has many Users
-  * username
-  * has Many Cards
-- Card
+- users[]
+  * name
+  * cards[]
+  - value
+  - suite
+- cards[]
   * value
+  * suite
 
 Routes
 ----------
-- /table/:id -> View of the Table
-- /table/create & / -> create a New Table & Invite users
-- /table/:id/:username/:secret -> User View
+
 
 
 

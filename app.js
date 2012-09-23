@@ -51,10 +51,12 @@ var Table = mongoose.model('Table', new mongoose.Schema({
 
 
 app.get('/', function(req, res) {
+
+
   res.render('index', { title: 'Deck.js' });
 });
 
-app.post('/table/create', function(req, res){
+app.post('/table/new', function(req, res){
   //creates a new table and redirect you to that table
   var table = new Table({ users:[], name: req.body.name });
   table.save(function(err, doc){
@@ -74,7 +76,7 @@ app.get('/table/:id', function(req, res) {
   });
 });
 
-app.post('/table/:id/user/create', function(req, res){
+app.post('/table/:id/user/new', function(req, res){
 
   Table.findById(req.params.id, function(err, table){
     var result = {};
