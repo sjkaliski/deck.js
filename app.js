@@ -30,20 +30,20 @@ app.configure('development', function(){
 
 
 var cardValues = ["A", "K", "Q", "J", "10", "9", "8", "7", "6", "5", "4", "3", "2"];
-var cardSuites = ["Heart", "Spade", "Club", "Diamond"];
+var cardSuits = ["Heart", "Spade", "Club", "Diamond"];
 var allCards = [];
 for(var i = 0; i < cardValues.length; i++){
-  for(var j = 0; j < cardSuites.length; j++){
+  for(var j = 0; j < cardSuits.length; j++){
     allCards.push({
       value: cardValues[i],
-      suite: cardSuites[j]
+      suit: cardSuits[j]
     });
   }
 }
 
 var Card = new mongoose.Schema({
   value: { type: String, trim: true, required: true, enum: cardValues },
-  suite: { type: String, trim: true, required: true, enum: cardSuites },
+  suit: { type: String, trim: true, required: true, enum: cardSuits },
   isVisible: { type: Boolean, default: false }
 });
 
