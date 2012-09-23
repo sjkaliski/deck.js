@@ -55,6 +55,13 @@ app.get('/', function(req, res) {
   res.render('index', { title: 'Deck.js' });
 });
 
+//get table by id
+app.get('/api/tables/:id', function(req, res){
+  Table.findById(req.params.id, function(err, doc){
+    res.json(doc);
+  });
+});
+
 //creates a new table
 app.post('/tables', function(req, res){
   //creates a new table and redirect you to that table
