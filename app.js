@@ -23,11 +23,11 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
-  mongoose.connect('mongodb://eboard:shipping@alex.mongohq.com:10070/ferrisclothiers');
 });
 
 app.configure('development', function(){
   app.use(express.errorHandler());
+  mongoose.connect('mongodb://localhost:27017/deckjs');
 });
 
 // Run server
