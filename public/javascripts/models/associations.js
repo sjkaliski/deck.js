@@ -18,23 +18,23 @@ define([
     });
 
   User.has()
-    .many('cards', {
-      collection: Cards,
-      inverse: 'user'
-    })
     .one('table', {
       model: Table,
       inverse: 'users'
+    })
+    .many('cards', {
+      collection: Cards,
+      inverse: 'user'
     });
 
   Card.has()
-    .one('user', {
-      model: User,
-      inverse: 'card'
-    })
     .one('table', {
       model: Table,
       inverse: 'table'
+    })
+    .one('user', {
+      model: User,
+      inverse: 'card'
     });
 
 });

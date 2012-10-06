@@ -37,6 +37,11 @@ server.listen(app.get('port'), function(){
 
 // Routes
 app.get('/', routes.index);
+app.get('/tables/create', routes.index);
+app.get('/tables/:table_id', routes.index);
+app.get('/tables/:table_id/join', routes.index);
+app.get('/tables/:table_id/users/:user_id', routes.index);
+
 app.get('/test', routes.test);
 
 app.get('/api/tables', routes.getTables);

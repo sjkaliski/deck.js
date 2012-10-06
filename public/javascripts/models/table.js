@@ -1,16 +1,21 @@
 define([
+  'underscore',
   'models/model',
   'models/cards',
   'models/users'
-], function(Model, Cards, Users) {
+], function(_, Model, Cards, Users) {
 
   var Table = Model.extend({
 
-    initialize: function() {
-      Model.prototype.initialize.apply(this, arguments);
-    },
+    urlRoot: '/api/tables',
 
-    urlRoot: '/api/tables'
+    toJSON: function() {
+      return {
+        name: this.attributes.name,
+        users: this.users().toJSON(),
+        cards: this.cards().toJSON()
+      };
+    }
 
   });
 

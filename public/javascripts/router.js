@@ -22,35 +22,37 @@ define([
 
     create: function() {
       var _this = this;
-      var table = Table.create();
-      table.save({}, {
-        success: function(resp) {
-          _this.navigate('/tables/' + table.get('_id'), true);
-        }
+      var name;
+      do { name = prompt("Name the table."); } while (!name);
+      var table = Table.create({ name: name });
+      table.save({}).done(function() {
+        _this.navigate('/tables/' + table.get('_id'), true);
       });
     },
 
     table: function(table_id) {
       var _this = this;
       var table = Table.create({ _id: table_id });
-      table.fetch({
-        success: function() {
-          _this.changePage(new TableView({
-            model: table
-          }));
-        }
+      table.fetch().done(function() {
+        _this.changePage(new TableView({
+          model: table
+        }));
       });
     },
 
     join: function(table_id) {
       var _this = this;
       var table = Table.create({ _id: table_id });
-      var user = User.create({ table_id: table_id });
-      user.save({}, {
-        success: function(resp) {
-          _this.navigate('/tables/' + table.get('_id') + '/users/' + user.get('_id'), true);
-        }
-      })
+      table.fetch().done(function() {
+        var name;
+        do { name = prompt("What's your name?"); } while (!name);
+        var user = User.create({ table_id: table_id, name: name });
+        user.save({}).done(function() {
+          table.save({}).done(function() {
+            _this.navigate('/tables/' + table.get('_id') + '/users/' + user.get('_id'), true);
+          });
+        });
+      });
     },
 
     view: function(table_id, user_id) {
