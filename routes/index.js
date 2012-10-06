@@ -14,10 +14,9 @@ exports.test = function(req, res) {
 
 // Get all tables
 exports.getTables = function(req, res) {
-  var result = {};
   Table.find({}, function(err, docs){
-      res.json(docs);
-    });
+    res.json(docs);
+  });
 };
 
 // Create new table

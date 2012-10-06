@@ -23,18 +23,6 @@ table {
 article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
 }
-  
-  
-/* Element */
-html, body {
-  height: 100%;
-  width: 100%;
-}
-body {
-  background-color: #e7e7e7;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 10px;
-}
 
 /* Card */
 #table {

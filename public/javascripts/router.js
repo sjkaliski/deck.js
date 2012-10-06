@@ -1,10 +1,12 @@
 define([
   'backbone',
   'models/table',
+  'models/tables',
   'models/user',
+  'views/index',
   'views/table',
   'views/user'
-], function(Backbone, Table, User, TableView, UserView) {
+], function(Backbone, Table, Tables, User, IndexView, TableView, UserView) {
 
   var Router = Backbone.Router.extend({
 
@@ -14,10 +16,21 @@ define([
     },
 
     routes: {
+      '': 'index',
       'tables/create': 'create',
       'tables/:table_id': 'table',
       'tables/:table_id/join': 'join',
       'tables/:table_id/users/:user_id': 'view'
+    },
+
+    index: function() {
+      var _this = this;
+      var tables = new Tables();
+      tables.fetch().done(function() {
+        _this.changePage(new IndexView({
+          collection: tables
+        }))
+      });
     },
 
     create: function() {
