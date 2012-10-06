@@ -27,7 +27,12 @@ a {
 .user-drop {
   width: 200px;
   height: 100px;
-  background-color: red;
+  border-radius: 10px;
+  border: 8px dashed #ccc;
   text-align: center;
   font-size: 16px;
+  margin-bottom: 20px;
+}
+.user-drop:hover {
+  border-color: #999;
 }

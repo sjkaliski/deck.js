@@ -1,12 +1,12 @@
 define([
   'backbone',
   'models/table',
-  'models/tables',
   'models/user',
   'views/index',
   'views/table',
-  'views/user'
-], function(Backbone, Table, Tables, User, IndexView, TableView, UserView) {
+  'views/user',
+  'socket'
+], function(Backbone, Table, User, IndexView, TableView, UserView, socket) {
 
   var Router = Backbone.Router.extend({
 
@@ -25,7 +25,7 @@ define([
 
     index: function() {
       var _this = this;
-      var tables = new Tables();
+      var tables = _this.app.tables;
       tables.fetch().done(function() {
         _this.changePage(new IndexView({
           collection: tables
@@ -69,6 +69,7 @@ define([
     },
 
     view: function(table_id, user_id) {
+      socket.emit('identify', { user_id: user_id, table_id: table_id });
       var table = Table.create({ _id: table_id });
       var user = User.create({ _id: user_id });
       this.changePage(new UserView({

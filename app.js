@@ -1,6 +1,6 @@
 // Dependencies
 var express = require('express')
-  , routes = require('./routes')
+  , Routes = require('./routes')
   , http = require('http')
   , mongoose = require('mongoose');
 
@@ -34,6 +34,8 @@ app.configure('development', function(){
 server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+var routes = new Routes(io);
 
 // Routes
 app.get('/', routes.index);

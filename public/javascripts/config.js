@@ -16,7 +16,7 @@ require.config({
     text: 'vendor/text',
     list: 'vendor/list',
     jst: 'vendor/jst',
-    socketio: 'socket.io/socket.io'
+    socketio: 'vendor/socket.io'
   },
   shim: {
     backbone: {
